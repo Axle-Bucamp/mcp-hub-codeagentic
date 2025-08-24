@@ -38,9 +38,9 @@ RUN npm install -g @intlayer/mcp @wonderwhy-er/desktop-commander
 # Note: github-mcp-server sera utilisé via son image Docker
 
 # Installation de code-sandbox-mcp
-RUN curl -L -o /usr/local/bin/code-sandbox-mcp \
-    https://github.com/Automata-Labs-team/code-sandbox-mcp/releases/download/v0.0.30/code-sandbox-mcp-linux-amd64 \
-    && chmod +x /usr/local/bin/code-sandbox-mcp
+#RUN curl -L -o /usr/local/bin/code-sandbox-mcp \
+#    https://github.com/Automata-Labs-team/code-sandbox-mcp/releases/download/v0.0.30/code-sandbox-mcp-linux-amd64 \
+#    && chmod +x /usr/local/bin/code-sandbox-mcp
 
 # Install Rust (needed for Developer MCP server)
 RUN apt-get update && apt-get install -y \
@@ -84,4 +84,3 @@ VOLUME ["${WORKSPACE_DIR}"]
 
 # Point d'entrée
 ENTRYPOINT ["/opt/entrypoint.sh"]
-

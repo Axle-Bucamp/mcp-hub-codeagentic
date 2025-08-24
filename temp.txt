@@ -4,3 +4,9 @@
       "env": {},
       "cwd": "/workspace"
     },
+    "code-sandbox": {
+      "command": "/usr/local/bin/code-sandbox-mcp",
+      "args": [],
+      "env": {},
+      "cwd": "/workspace"
+    },

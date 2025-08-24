@@ -103,41 +103,6 @@ services:
       - no-new-privileges:true
     user: "node"
 
-  # Serveur MCP GitHub (bridge Docker MCP -> compose service)
-  github-mcp:
-    image: mcp/github
-    env_file:
-      - path: .env
-        required: false # Makes the file optional
-    container_name: unified-mcp-github
-    restart: unless-stopped
-    environment:
-      - GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_PAT:-}
-    volumes:
-      - ./workspace:/workspace:rw
-    networks:
-      - mcp-network
-    depends_on:
-      - docker-dind
-    healthcheck:
-      test: ["CMD", "echo", "ok"] # placeholder since the container exits on no command
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 20s
-
-  # Dev container (TypeScript / Node.js)
-  dev:
-    image: mcr.microsoft.com/devcontainers/typescript-node:latest
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - .:/workspace:cached
-    command: sleep infinity
-    networks:
-      - mcp-network
-
   # Service Docker-in-Docker pour les serveurs MCP qui nécessitent Docker
   docker-dind:
     image: docker:24-dind
