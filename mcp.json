@@ -1,0 +1,45 @@
+{
+  "mcpServers": {
+    "code-sandbox": {
+      "command": "/usr/local/bin/code-sandbox-mcp-linux-amd64",
+      "args": [],
+      "env": {},
+      "cwd": "/workspace"
+    },
+    "developer": {
+      "command": "node",
+      "args": ["/opt/developer/dist/index.js"],
+      "env": {},
+      "cwd": "/workspace"
+    },
+    "intlayer": {
+      "command": "npx",
+      "args": ["-y", "@intlayer/mcp"],
+      "env": {},
+      "cwd": "/workspace"
+    },
+    "intlayer-sse": {
+      "transport": "sse",
+      "url": "https://mcp.intlayer.org"
+    },
+    "desktop-commander": {
+      "command": "npx",
+      "args": ["-y", "@wonderwhy-er/desktop-commander"],
+      "env": {},
+      "cwd": "/workspace"
+    },
+    "graphiti": {
+      "transport": "sse",
+      "url": "http://graphiti-mcp:8000/sse"
+    },
+    "github": {
+      "transport": "sse",
+      "url": "http://github-mcp:8000/sse"
+    },
+    "dev-vscode": {
+      "transport": "sse",
+      "url": "http://dev:3000/sse"
+    }
+  }
+}
+

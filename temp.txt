@@ -1,0 +1,6 @@
+"smart-tree": {
+      "command": "/usr/local/bin/st",
+      "args": ["--mcp"],
+      "env": {},
+      "cwd": "/workspace"
+    },

@@ -1,0 +1,165 @@
+
+services:
+  # Base de données Neo4j pour Graphiti
+  neo4j:
+    image: neo4j:5.26.0
+    container_name: unified-mcp-neo4j
+    restart: unless-stopped
+    ports:
+      - "7474:7474" # HTTP
+      - "7687:7687" # Bolt
+    environment:
+      - NEO4J_AUTH=${NEO4J_USER:-neo4j}/${NEO4J_PASSWORD:-demodemo}
+      - NEO4J_server_memory_heap_initial__size=512m
+      - NEO4J_server_memory_heap_max__size=1G
+      - NEO4J_server_memory_pagecache_size=512m
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+    networks:
+      - mcp-network
+    healthcheck:
+      test: ["CMD", "wget", "-O", "/dev/null", "http://localhost:7474"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # Serveur Graphiti MCP avec modèle VLLM
+  graphiti-mcp:
+    image: zepai/knowledge-graph-mcp:latest
+    container_name: unified-mcp-graphiti
+    restart: unless-stopped
+    env_file:
+      - path: .env
+        required: false # Makes the file optional
+    depends_on:
+      neo4j:
+        condition: service_healthy
+    environment:
+      - NEO4J_URI=${NEO4J_URI:-bolt://neo4j:7687}
+      - NEO4J_USER=${NEO4J_USER:-neo4j}
+      - NEO4J_PASSWORD=${NEO4J_PASSWORD:-demodemo}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - PATH=/root/.local/bin:${PATH}
+      - SEMAPHORE_LIMIT=${SEMAPHORE_LIMIT:-10}
+      - AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT:-https://kitty.guidry-cloud.com/v1}
+      - MODEL_NAME=${MODEL_NAME:-kitten-kitkat/Qwen3-4B-Thinking-2507}
+      - SMALL_MODEL_NAME=${SMALL_MODEL_NAME:-kitten-kitkat/Qwen3-4B-Thinking-2507}
+      - EMBEDDER_MODEL_NAME=${EMBEDDER_MODEL_NAME:-sentence-transformers/all-MiniLM-L6-v2}
+    ports:
+      - "8000:8000" # Expose the MCP server via HTTP for SSE transport
+    networks:
+      - mcp-network
+    command: ["uv", "run", "graphiti_mcp_server.py", "--transport", "sse"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Serveur MCP unifié principal
+  unified-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: unified-mcp-server
+    restart: unless-stopped
+    ports:
+      - "3000:3000"  # Port principal pour l'API proxy
+      - "3001:3001"  # Port SSE
+    volumes:
+      - ./workspace:/workspace:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro  # Pour github-mcp-server
+    environment:
+      - GITHUB_PAT=${GITHUB_PAT:-}
+      - MCP_HOST=0.0.0.0
+      - MCP_PORT=3000
+      - MCP_SSE_PORT=3001
+      - NODE_ENV=production
+      - PYTHONUNBUFFERED=1
+      # Configuration pour les modèles VLLM
+      - AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT:-https://kitty.guidry-cloud.com/v1}
+      - MODEL_NAME=${MODEL_NAME:-kitten-kitkat/Qwen3-4B-Thinking-2507}
+      - SMALL_MODEL_NAME=${SMALL_MODEL_NAME:-kitten-kitkat/Qwen3-4B-Thinking-2507}
+      - EMBEDDER_MODEL_NAME=${EMBEDDER_MODEL_NAME:-sentence-transformers/all-MiniLM-L6-v2}
+    networks:
+      - mcp-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      - docker-dind
+      - graphiti-mcp
+    privileged: false
+    security_opt:
+      - no-new-privileges:true
+    user: "node"
+
+  # Serveur MCP GitHub (bridge Docker MCP -> compose service)
+  github-mcp:
+    image: ghcr.io/github/github-mcp-server:latest
+    container_name: unified-mcp-github
+    restart: unless-stopped
+    environment:
+      - GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_PAT:-}
+    volumes:
+      - ./workspace:/workspace:rw
+    networks:
+      - mcp-network
+    depends_on:
+      - docker-dind
+    healthcheck:
+      test: ["CMD", "echo", "ok"] # placeholder since the container exits on no command
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+  # Dev container (TypeScript / Node.js)
+  dev:
+    image: mcr.microsoft.com/devcontainers/typescript-node:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/workspace:cached
+    command: sleep infinity
+    networks:
+      - mcp-network
+
+  # Service Docker-in-Docker pour les serveurs MCP qui nécessitent Docker
+  docker-dind:
+    image: docker:24-dind
+    container_name: unified-mcp-docker
+    restart: unless-stopped
+    privileged: true
+    environment:
+      - DOCKER_TLS_CERTDIR=/certs
+    volumes:
+      - docker-certs-ca:/certs/ca
+      - docker-certs-client:/certs/client
+      - ./workspace:/workspace:rw
+    networks:
+      - mcp-network
+    command: ["dockerd", "--host=unix:///var/run/docker.sock", "--host=tcp://0.0.0.0:2376", "--tls=false"]
+
+networks:
+  mcp-network:
+    driver: bridge
+    name: mcp-unified-network
+
+volumes:
+  neo4j_data:
+    name: mcp-neo4j-data
+  neo4j_logs:
+    name: mcp-neo4j-logs
+  docker-certs-ca:
+    name: mcp-docker-certs-ca
+  docker-certs-client:
+    name: mcp-docker-certs-client
+
