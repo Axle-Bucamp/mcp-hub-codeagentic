@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y \
 ENV PYTHONUNBUFFERED=1
 ENV NODE_ENV=production
 ENV WORKSPACE_DIR=/workspace
-
+#RUN chmod 777 /workspace
 # Création du répertoire de travail
 WORKDIR /opt
 

@@ -119,6 +119,32 @@ services:
       - mcp-network
     command: ["dockerd", "--host=unix:///var/run/docker.sock", "--host=tcp://0.0.0.0:2376", "--tls=false"]
 
+  # VS Code Server (Dev Container)
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: unified-code-server
+    env_file:
+      - path: .env
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - PASSWORD=${CODE_SERVER_PASSWORD:-password} # fallback if not set
+      # - HASHED_PASSWORD= # optional (use if you want a pre-hashed password)
+      - SUDO_PASSWORD=${CODE_SERVER_ADMIN:-kittenity} # optional
+      #- SUDO_PASSWORD_HASH=   # optional
+      - PROXY_DOMAIN=code.guidry-cloud.com # optional (reverse proxy domain)
+      - DEFAULT_WORKSPACE=/workspace
+      - PWA_APPNAME=Unified VS Code
+    volumes:
+      - ./workspace:/workspace:rw         # your shared project workspace
+      - /var/run/docker.sock:/var/run/docker.sock # optional: docker access inside VS Code
+    ports:
+      - "8449:8443"
+    networks:
+      - mcp-network
+    restart: unless-stopped
+
 networks:
   mcp-network:
     driver: bridge

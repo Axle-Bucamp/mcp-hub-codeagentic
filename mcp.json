@@ -16,10 +16,6 @@
       "env": {},
       "cwd": "/workspace"
     },
-    "graphiti-memory": {
-      "transportType": "sse",
-      "url": "http://graphiti-mcp:8000/sse"
-    },
     "github": {
       "timeout": 60,
       "command": "npx",
@@ -28,7 +24,7 @@
         "@modelcontextprotocol/server-github"
       ],
       "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "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"
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "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"
       },
       "transportType": "stdio"
     },
@@ -36,8 +32,14 @@
       "command": "npx",
       "args": ["coderabbitai-mcp@latest"],
       "env": {
-        "GITHUB_PAT": "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"
+        "GITHUB_PAT": "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"
       }
+    },
+    "npm-package-docs-mcp": {
+      "command": "npx",
+      "args": [
+        "meanands/npm-package-docs-mcp"
+      ]
     }
   }
 }

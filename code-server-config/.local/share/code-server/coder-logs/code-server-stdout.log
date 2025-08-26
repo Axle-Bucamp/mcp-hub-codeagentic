@@ -1,0 +1,55 @@
+[2025-08-26T09:10:39.007Z] info  code-server 4.103.2 54b33a75e0b4593b77f9a217323c4b27a42f4073
+[2025-08-26T09:10:39.008Z] info  Using user-data-dir /config/data
+[2025-08-26T09:10:39.020Z] info  Using config file /config/.config/code-server/config.yaml
+[2025-08-26T09:10:39.020Z] info  HTTP server listening on http://0.0.0.0:8443/
+[2025-08-26T09:10:39.020Z] info    - Authentication is enabled
+[2025-08-26T09:10:39.020Z] info      - Using password from $PASSWORD
+[2025-08-26T09:10:39.020Z] info    - Not serving HTTPS
+[2025-08-26T09:10:39.020Z] info    - Proxying the following domain:
+[2025-08-26T09:10:39.020Z] info      - {{port}}.code-server.my.domain
+[2025-08-26T09:10:39.021Z] info  Using proxy URI in PORTS tab: //{{port}}.code-server.my.domain
+[2025-08-26T09:10:39.021Z] info  Session server listening on /config/data/code-server-ipc.sock
+[2025-08-26T09:14:06.800Z] info  code-server 4.103.2 54b33a75e0b4593b77f9a217323c4b27a42f4073
+[2025-08-26T09:14:06.801Z] info  Using user-data-dir /config/data
+[2025-08-26T09:14:06.812Z] info  Using config file /config/.config/code-server/config.yaml
+[2025-08-26T09:14:06.812Z] info  HTTP server listening on http://0.0.0.0:8443/
+[2025-08-26T09:14:06.812Z] info    - Authentication is enabled
+[2025-08-26T09:14:06.812Z] info      - Using password from $PASSWORD
+[2025-08-26T09:14:06.812Z] info    - Not serving HTTPS
+[2025-08-26T09:14:06.812Z] info    - Proxying the following domain:
+[2025-08-26T09:14:06.813Z] info      - {{port}}.code-server.my.domain
+[2025-08-26T09:14:06.813Z] info  Using proxy URI in PORTS tab: //{{port}}.code-server.my.domain
+[2025-08-26T09:14:06.813Z] info  Session server listening on /config/data/code-server-ipc.sock
+[09:15:08] 
+
+
+
+
+[09:15:08] Extension host agent started.
+[09:15:08] Started initializing default profile extensions in extensions installation folder. file:///config/extensions
+[09:15:08] Completed initializing default profile extensions in extensions installation folder. file:///config/extensions
+[2025-08-26T09:19:21.182Z] info  code-server 4.103.2 54b33a75e0b4593b77f9a217323c4b27a42f4073
+[2025-08-26T09:19:21.183Z] info  Using user-data-dir /config/data
+[2025-08-26T09:19:21.193Z] info  Using config file /config/.config/code-server/config.yaml
+[2025-08-26T09:19:21.193Z] info  HTTP server listening on http://0.0.0.0:8443/
+[2025-08-26T09:19:21.193Z] info    - Authentication is enabled
+[2025-08-26T09:19:21.193Z] info      - Using password from $PASSWORD
+[2025-08-26T09:19:21.193Z] info    - Not serving HTTPS
+[2025-08-26T09:19:21.193Z] info    - Proxying the following domain:
+[2025-08-26T09:19:21.194Z] info      - {{port}}.code.guidry-cloud.com
+[2025-08-26T09:19:21.194Z] info  Using proxy URI in PORTS tab: //{{port}}.code.guidry-cloud.com
+[2025-08-26T09:19:21.194Z] info  Session server listening on /config/data/code-server-ipc.sock
+[09:19:54] 
+
+
+
+
+[09:19:54] Extension host agent started.
+[09:21:12] [192.168.1.85][179d970d][ManagementConnection] New connection established.
+[09:21:14] [192.168.1.165][0885f1fb][ExtensionHostConnection] New connection established.
+[09:21:14] [192.168.1.165][0885f1fb][ExtensionHostConnection] <1377> Launched Extension Host Process.
+[09:24:06] [192.168.1.85][200df832][ManagementConnection] New connection established.
+[09:24:08] [192.168.1.85][3c59aa7e][ExtensionHostConnection] New connection established.
+[09:24:08] [192.168.1.85][3c59aa7e][ExtensionHostConnection] <3967> Launched Extension Host Process.
+[09:29:41] [192.168.1.85][200df832][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[09:29:42] [192.168.1.85][3c59aa7e][ExtensionHostConnection] <3967> Extension Host Process exited with code: 0, signal: null.

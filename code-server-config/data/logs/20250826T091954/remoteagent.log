@@ -1,0 +1,47 @@
+2025-08-26 09:19:54.647 [info] 
+
+
+
+
+2025-08-26 09:19:54.655 [info] Extension host agent started.
+2025-08-26 09:21:12.926 [info] [192.168.1.85][179d970d][ManagementConnection] New connection established.
+2025-08-26 09:21:14.485 [info] [192.168.1.165][0885f1fb][ExtensionHostConnection] New connection established.
+2025-08-26 09:21:14.776 [info] [192.168.1.165][0885f1fb][ExtensionHostConnection] <1377> Launched Extension Host Process.
+2025-08-26 09:21:36.303 [error] Error: listen ENOSPC: no space left on device /tmp/vscode-ipc-1172c863-9fe4-4d97-94b2-2a09dd139e1b.sock
+    at Server.setupListenHandle [as _listen2] (node:net:1918:21)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2119:5)
+    at Pb.g (file:///app/code-server/lib/vscode/out/server-main.js:181:68457)
+    at new Pb (file:///app/code-server/lib/vscode/out/server-main.js:181:68372)
+    at iA.s (file:///app/code-server/lib/vscode/out/server-main.js:181:88209)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26 09:24:06.941 [info] [192.168.1.85][200df832][ManagementConnection] New connection established.
+2025-08-26 09:24:08.017 [info] [192.168.1.85][3c59aa7e][ExtensionHostConnection] New connection established.
+2025-08-26 09:24:08.039 [info] [192.168.1.85][3c59aa7e][ExtensionHostConnection] <3967> Launched Extension Host Process.
+2025-08-26 09:24:08.470 [warning] RequestStore#acceptReply was called without receiving a matching request 34
+2025-08-26 09:24:08.470 [warning] RequestStore#acceptReply was called without receiving a matching request 35
+2025-08-26 09:24:08.470 [warning] RequestStore#acceptReply was called without receiving a matching request 36
+2025-08-26 09:24:08.470 [warning] RequestStore#acceptReply was called without receiving a matching request 37
+2025-08-26 09:24:08.470 [warning] RequestStore#acceptReply was called without receiving a matching request 38
+2025-08-26 09:24:08.471 [warning] RequestStore#acceptReply was called without receiving a matching request 39
+2025-08-26 09:24:08.471 [warning] RequestStore#acceptReply was called without receiving a matching request 40
+2025-08-26 09:24:08.471 [warning] RequestStore#acceptReply was called without receiving a matching request 41
+2025-08-26 09:24:08.471 [warning] RequestStore#acceptReply was called without receiving a matching request 42
+2025-08-26 09:24:08.472 [warning] RequestStore#acceptReply was called without receiving a matching request 43
+2025-08-26 09:24:08.472 [warning] RequestStore#acceptReply was called without receiving a matching request 44
+2025-08-26 09:24:13.462 [warning] RequestStore#acceptReply was called without receiving a matching request 45
+2025-08-26 09:24:13.462 [warning] RequestStore#acceptReply was called without receiving a matching request 46
+2025-08-26 09:24:13.462 [warning] RequestStore#acceptReply was called without receiving a matching request 47
+2025-08-26 09:24:13.462 [warning] RequestStore#acceptReply was called without receiving a matching request 48
+2025-08-26 09:24:13.462 [warning] RequestStore#acceptReply was called without receiving a matching request 49
+2025-08-26 09:24:13.462 [warning] RequestStore#acceptReply was called without receiving a matching request 50
+2025-08-26 09:24:13.462 [warning] RequestStore#acceptReply was called without receiving a matching request 51
+2025-08-26 09:24:13.462 [warning] RequestStore#acceptReply was called without receiving a matching request 52
+2025-08-26 09:24:13.462 [warning] RequestStore#acceptReply was called without receiving a matching request 53
+2025-08-26 09:24:13.462 [warning] RequestStore#acceptReply was called without receiving a matching request 54
+2025-08-26 09:24:13.462 [warning] RequestStore#acceptReply was called without receiving a matching request 55
+2025-08-26 09:26:33.518 [error] Error: listen ENOSPC: no space left on device /tmp/vscode-ipc-9f88011a-154f-40ed-8058-70700220b470.sock
+    at Server.setupListenHandle [as _listen2] (node:net:1918:21)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2119:5)
+    at Pb.g (file:///a
