@@ -11,8 +11,8 @@ services:
       - path: .env
         required: false # Makes the file optional
     ports:
-      - "3000:3000"  # Port principal pour l'API proxy
-      - "3001:3001"  # Port SSE
+      - "3003:3000"  # Port principal pour l'API proxy
+      - "3004:3001"  # Port SSE
     volumes:
       - ./workspace:/workspace:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro  # Pour github-mcp-server

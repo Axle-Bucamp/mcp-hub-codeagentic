@@ -32,7 +32,7 @@
       "command": "npx",
       "args": ["coderabbitai-mcp@latest"],
       "env": {
-        "GITHUB_PAT": "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"
+        "GITHUB_PAT": "${env:GITHUB_PAT}"
       }
     },
     "npm-package-docs-mcp": {
@@ -48,7 +48,7 @@
         "@modelcontextprotocol/server-memory"
       ]
     },
-    "memory": {
+    "protolint": {
       "command": "npx",
       "args": [
         "-y",
