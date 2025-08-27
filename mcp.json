@@ -53,7 +53,7 @@
       "args": [
         "-y",
         "protolint",
-	"--mcp",
+	"--mcp"
       ]
     }
   }
