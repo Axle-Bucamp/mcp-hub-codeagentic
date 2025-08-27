@@ -75,6 +75,7 @@ COPY mcp.json /opt/mcp.json
 # Script d'entrée pour démarrer mcp-proxy
 COPY entrypoint.sh /opt/entrypoint.sh
 RUN chmod +x /opt/entrypoint.sh
+RUN npm init playwright@latest
 
 # Exposition des ports
 EXPOSE 3000 3001

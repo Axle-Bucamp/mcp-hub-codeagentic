@@ -24,7 +24,7 @@
         "@modelcontextprotocol/server-github"
       ],
       "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "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"
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${env:GITHUB_PAT}"
       },
       "transportType": "stdio"
     },
@@ -39,6 +39,21 @@
       "command": "npx",
       "args": [
         "meanands/npm-package-docs-mcp"
+      ]
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ]
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "protolint",
+	"--mcp",
       ]
     }
   }
